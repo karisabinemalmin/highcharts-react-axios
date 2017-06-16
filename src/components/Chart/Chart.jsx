@@ -15,21 +15,28 @@ export default class Charts extends React.Component {
       "xAxis": {
         "categories": this.props.xAxis
       },
+      yAxis: {
+          min: 0,
+          title: {
+              text: 'Total fruit consumption'
+          },
+          stackLabels: {
+              enabled: true,
+              style: {
+                  fontWeight: 'bold',
+                  color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+              }
+          }
+      },
       tooltip: {
           pointFormat: `${this.props.dataName}: <b>{point.percentage:.1f}%</b>`
       },
       plotOptions : {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
+        column: {
+          stacking: this.props.stacking,
           dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-            style: {
-              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-            }
-          },
-          showInLegend: true
+            enabled: false,
+          }
         }
       },
       "series": [

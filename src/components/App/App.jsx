@@ -39,7 +39,7 @@ export default class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() { // Get data
     const subject = "sass"
     axios.get(`https://www.reddit.com/r/${subject}.json`).then(res => {
       const comments = res.data.data.children.map(obj => obj.data.num_comments);
@@ -58,10 +58,30 @@ export default class App extends React.Component {
       <div className={styles.element}>
 
         <Chart
+          title="Stacked"
+          stacking="true"
+          dataName="Comments"
+          type="column" // pie, bar, column, line
+          data={this.state.comments}
+          data2={this.state.scores}
+          xAxis={this.state.titles}
+          yAxis={this.state.titles}
+        />
+
+        <Chart
+          title="Reddit data 1"
+          type="column" // pie, bar, column, line
+          dataName="Comments"
+          data={this.state.comments}
+          data2={this.state.scores}
+          xAxis={this.state.titles}
+        />
+
+        <Chart
           title="Scatter"
           type="scatter" // pie, bar, column, line
-          data={this.state.comments}
           dataName="Comments"
+          data={this.state.comments}
           data2={this.state.scores}
           xAxis={this.state.titles}
         />
@@ -71,15 +91,6 @@ export default class App extends React.Component {
           type="pie" // pie, bar, column, line
           data={piedata}
           dataName="Brands"
-        />
-
-        <Chart
-          title="Reddit data 1"
-          type="column" // pie, bar, column, line
-          data={this.state.comments}
-          dataName="Comments"
-          data2={this.state.scores}
-          xAxis={this.state.titles}
         />
 
         <Chart
