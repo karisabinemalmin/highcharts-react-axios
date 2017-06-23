@@ -36,50 +36,62 @@ export default class App extends React.Component {
       comments: [],
       scores: [],
       titles: [],
+      subject: 'atom',
+      clicked: false,
+      selectedOption: 'bar'
     };
   }
 
+  handleClick() {
+    this.setState({
+      clicked: !this.state.clicked
+    })
+  }
+
   componentDidMount() { // Get data
-    const subject = "sass"
-    axios.get(`https://www.reddit.com/r/${subject}.json`).then(res => {
-      const comments = res.data.data.children.map(obj => obj.data.num_comments);
-      const scores = res.data.data.children.map(obj => obj.data.score);
-      const titles = res.data.data.children.map(obj => obj.data.title);
-      this.setState({
-        comments: comments,
-        scores: scores,
-        titles: titles
-      });
+    const subject = this.state.subject
+    axios.get(`https://www.reddit.com/r/${subject}.json`)
+      .then(res => {
+        const comments = res.data.data.children.slice(0, 5).map(obj => obj.data.num_comments);
+        const scores = res.data.data.children.slice(0, 5).map(obj => obj.data.score);
+        const titles = res.data.data.children.slice(0, 5).map(obj => obj.data.title);
+        this.setState({
+          comments: comments,
+          scores: scores,
+          titles: titles
+        });
     });
   }
 
   render() {
     return (
       <div className={styles.element}>
-
         <Chart
-          title="Stacked"
+          selectedOption={this.state.selectedOption}
+          title="Hovednavn på graf"
           stacking="true"
           dataName="Comments"
-          type="column" // pie, bar, column, line
+          type="bar" // pie, bar, column, line
           data={this.state.comments}
           data2={this.state.scores}
           xAxis={this.state.titles}
           yAxis={this.state.titles}
         />
 
+        <br />
+
         <Chart
-          title="Reddit data 1"
-          type="column" // pie, bar, column, line
-          dataName="Comments"
+          selectedOption={this.state.selectedOption}
+          title="Scatter"
+          dataName="Chart 2"
           data={this.state.comments}
           data2={this.state.scores}
           xAxis={this.state.titles}
         />
 
-        <Chart
-          title="Scatter"
-          type="scatter" // pie, bar, column, line
+        {/* <Chart
+          title="Reddit data 1"
+          type="column" // pie, bar, column, line
           dataName="Comments"
           data={this.state.comments}
           data2={this.state.scores}
@@ -112,7 +124,7 @@ export default class App extends React.Component {
         <Map
           title="Norway"
           data={mapdata}
-        />
+        /> */}
 
       </div>
     );
