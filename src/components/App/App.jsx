@@ -44,7 +44,6 @@ export default class App extends React.Component {
   }
 
   handleSlide(e) {
-    console.log('handleslide from app', e.target.value)
     this.setState({
       selectedDropdown: e.target.value,
     })
@@ -52,7 +51,7 @@ export default class App extends React.Component {
 
   handleClose(e) {
     this.setState({
-      selectedDropdown: ''
+      selectedDropdown: null
     })
   }
 
@@ -80,11 +79,6 @@ export default class App extends React.Component {
   render() {
     return (
       <div className={styles.element}>
-
-        Selected dropdown: {this.state.selectedDropdown} <br />
-
-        <br />
-
         <Chart
           selectedOption={this.state.selectedOption}
           title="Statistikk"
@@ -103,20 +97,22 @@ export default class App extends React.Component {
 
         <br />
 
-        <Chart
-          selectedOption={this.state.selectedOption}
-          title="Scatter"
-          dataName="Chart 2"
-          data={this.state.comments}
-          data2={this.state.scores}
-          xAxis={this.state.titles}
-          handleSlide={this.handleSlide.bind(this)}
-          handleClose={this.handleClose.bind(this)}
-          selectedDropdown={this.state.selectedDropdown}
-          datagrunnlag={this.state.titles[1]}
-        />
+        <div style={{'width': '50%', 'display': 'inline-block'}}>
+          <Chart
+            selectedOption={this.state.selectedOption}
+            title="Scatter"
+            dataName="Chart 2"
+            data={this.state.comments}
+            data2={this.state.scores}
+            xAxis={this.state.titles}
+            handleSlide={this.handleSlide.bind(this)}
+            handleClose={this.handleClose.bind(this)}
+            selectedDropdown={this.state.selectedDropdown}
+            datagrunnlag={this.state.titles[1]}
+          />
+        </div>
 
-        {/* <div style={{'width': '50%', 'display': 'inline-block'}}>
+        <div style={{'width': '50%', 'display': 'inline-block'}}>
           <Chart
             title="Reddit data 1"
             type="column" // pie, bar, column, line
@@ -124,8 +120,12 @@ export default class App extends React.Component {
             data={this.state.comments}
             data2={this.state.scores}
             xAxis={this.state.titles}
+            handleSlide={this.handleSlide.bind(this)}
+            handleClose={this.handleClose.bind(this)}
+            selectedDropdown={this.state.selectedDropdown}
+            datagrunnlag={this.state.titles[1]}
           />
-        </div> */}
+        </div>
 
 
         {/* <Chart

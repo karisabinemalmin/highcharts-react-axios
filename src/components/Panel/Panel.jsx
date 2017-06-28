@@ -35,11 +35,11 @@ export default class Panel extends React.Component {
                   value={this.props.title}
                   name="datagrunnlag"
                   type="checkbox"
-                  checked={this.state.checked}
-                />;
+                  checked={selected}
+                />
     } else {
-      checkbox =  <input
-                  onChange={this.handleSlide.bind(this)}
+      checkbox = <input
+                  onClick={this.handleSlide.bind(this)}
                   value={this.props.title}
                   name="datagrunnlag"
                   type="checkbox"
