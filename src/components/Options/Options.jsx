@@ -5,7 +5,7 @@ export default class Options extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: null
+      selectedType: this.props.selectedType
     }
   }
 
@@ -17,7 +17,7 @@ export default class Options extends React.Component {
     this.props.handleSelect(changeEvent)
     this.props.handleClick()
     this.setState({
-      selectedOption: changeEvent.target.value,
+      selectedType: changeEvent.target.value,
     })
   }
 
@@ -30,7 +30,7 @@ export default class Options extends React.Component {
                 ref="inputfield"
                 type="radio"
                 name="velg_visning"
-                checked={'bar' === this.state.selectedOption}
+                checked={'pie' === this.state.selectedType}
                 value="pie" />
                 pie
         </label>
@@ -40,7 +40,7 @@ export default class Options extends React.Component {
                 ref="inputfield"
                 type="radio"
                 name="velg_visning"
-                checked={'bar' === this.state.selectedOption}
+                checked={'bar' === this.state.selectedType}
                 value="bar" />
                 bar
         </label>
@@ -50,7 +50,7 @@ export default class Options extends React.Component {
                 ref="inputfield"
                 type="radio"
                 name="velg_visning"
-                checked={'line' === this.state.selectedOption}
+                checked={'line' === this.state.selectedType}
                 value="line" />
                 line
         </label>
@@ -60,7 +60,7 @@ export default class Options extends React.Component {
                 ref="inputfield"
                 type="radio"
                 name="velg_visning"
-                checked={'column' === this.state.selectedOption}
+                checked={'column' === this.state.selectedType}
                 value="column" />
                 column
         </label>

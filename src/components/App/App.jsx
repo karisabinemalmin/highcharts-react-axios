@@ -3,31 +3,6 @@ import styles from './App.sass';
 import axios from 'axios'
 import Chart from '../Chart/Chart.jsx'; // Component
 import Map from '../Map/Map.jsx'; // Component
-import mapdata from './mapdata.json' // Map data
-
-const piedata = [
-  {
-    name: 'Microsoft Internet Explorer',
-    y: 56.33
-  }, {
-    name: 'Chrome',
-    y: 24.03,
-    sliced: true,
-    selected: true
-  }, {
-    name: 'Firefox',
-    y: 10.38
-  }, {
-    name: 'Safari',
-    y: 4.77
-  }, {
-    name: 'Opera',
-    y: 0.91
-  }, {
-    name: 'Proprietary or Undetectable',
-    y: 0.2
-  }
-]
 
 export default class App extends React.Component {
   constructor(props) {
@@ -38,20 +13,20 @@ export default class App extends React.Component {
       titles: [],
       subject: 'atom',
       clicked: false,
-      selectedOption: 'bar',
-      selectedDropdown: ''
+      // selectedOption: 'bar',
+      selectedPanel: ''
     };
   }
 
   handleSlide(e) {
     this.setState({
-      selectedDropdown: e.target.value,
+      selectedPanel: e.target.value,
     })
   }
 
   handleClose(e) {
     this.setState({
-      selectedDropdown: null
+      selectedPanel: null
     })
   }
 
@@ -80,10 +55,10 @@ export default class App extends React.Component {
     return (
       <div className={styles.element}>
         <Chart
-          selectedOption={this.state.selectedOption}
           title="Statistikk"
           stacking="true"
           dataName="Comments"
+          dataName2="Scores"
           type="bar" // pie, bar, column, line
           data={this.state.comments}
           data2={this.state.scores}
@@ -91,65 +66,45 @@ export default class App extends React.Component {
           yAxis={this.state.titles}
           handleSlide={this.handleSlide.bind(this)}
           handleClose={this.handleClose.bind(this)}
-          selectedDropdown={this.state.selectedDropdown}
+          selectedPanel={this.state.selectedPanel}
           datagrunnlag={this.state.titles[0]}
         />
 
         <br />
 
-        <div style={{'width': '50%', 'display': 'inline-block'}}>
-          <Chart
-            selectedOption={this.state.selectedOption}
-            title="Scatter"
-            dataName="Chart 2"
-            data={this.state.comments}
-            data2={this.state.scores}
-            xAxis={this.state.titles}
-            handleSlide={this.handleSlide.bind(this)}
-            handleClose={this.handleClose.bind(this)}
-            selectedDropdown={this.state.selectedDropdown}
-            datagrunnlag={this.state.titles[1]}
-          />
-        </div>
-
-        <div style={{'width': '50%', 'display': 'inline-block'}}>
-          <Chart
-            title="Reddit data 1"
-            type="column" // pie, bar, column, line
-            dataName="Comments"
-            data={this.state.comments}
-            data2={this.state.scores}
-            xAxis={this.state.titles}
-            handleSlide={this.handleSlide.bind(this)}
-            handleClose={this.handleClose.bind(this)}
-            selectedDropdown={this.state.selectedDropdown}
-            datagrunnlag={this.state.titles[1]}
-          />
-        </div>
-
-
-        {/* <Chart
-          title="Reddit data 2"
-          type="bar" // pie, bar, column, line
-          data={this.state.comments}
-          data2={this.state.scores}
-          xAxis={this.state.titles}
-        />
-
         <Chart
-          title="Reddit data 3"
+          title="Statistikk2"
+          stacking="true"
+          dataName="Comments"
+          dataName2="Scores"
           type="line" // pie, bar, column, line
           data={this.state.comments}
           data2={this.state.scores}
           xAxis={this.state.titles}
+          yAxis={this.state.titles}
+          handleSlide={this.handleSlide.bind(this)}
+          handleClose={this.handleClose.bind(this)}
+          selectedPanel={this.state.selectedPanel}
+          datagrunnlag={this.state.titles[0]}
         />
- */}
 
- <br/>
-        {/* <Map
-          title="Norway"
-          data={mapdata}
-        /> */}
+        <br />
+
+        <Chart
+          title="Statistikk3"
+          stacking="true"
+          dataName="Comments"
+          dataName2="Scores"
+          type="column" // pie, bar, column, line
+          data={this.state.comments}
+          data2={this.state.scores}
+          xAxis={this.state.titles}
+          yAxis={this.state.titles}
+          handleSlide={this.handleSlide.bind(this)}
+          handleClose={this.handleClose.bind(this)}
+          selectedPanel={this.state.selectedPanel}
+          datagrunnlag={this.state.titles[0]}
+        />
 
       </div>
     );

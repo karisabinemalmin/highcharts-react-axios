@@ -7,21 +7,21 @@ export default class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      isOpen: false
     }
   }
 
   handleClick() {
     this.setState({
-      open: !this.state.open
+      isOpen: !this.state.isOpen
     })
   }
 
   handleSelect(changeEvent) {
     this.props.handleSelect(changeEvent)
     this.setState({
-      selectedOption: changeEvent.target.value,
-      open: !this.state.open
+      selectedType: changeEvent.target.value,
+      isOpen: !this.state.isOpen
     })
   }
 
@@ -30,18 +30,19 @@ export default class Dropdown extends React.Component {
       <div className={styles.wrap}>
 
         <a onClick={this.handleClick.bind(this)}>
-          <span className={this.state.open ? styles.active : styles.element }>
-            <span className={this.state.open ? styles.rotated : '' }>
+          <span className={this.state.isOpen ? styles.active : styles.element }>
+            <span className={this.state.isOpen ? styles.rotated : '' }>
               <img className={styles.icon} src={icon}/>
             </span>
-            {this.props.name} ({this.props.selectedOption})
+            {this.props.selectedType}
           </span>
         </a>
 
-        <div style={this.state.open ? {'display': 'block'} : {'display': 'none'}}>
+        <div style={this.state.isOpen ? {'display': 'block'} : {'display': 'none'}}>
           <Options
             handleClick={this.handleClick.bind(this)}
             handleSelect={this.props.handleSelect}
+            selectedType={this.props.selectedType}
           />
         </div>
 

@@ -11,15 +11,14 @@ export default class Charts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: 'bar',
-      dataName2: 'Hello',
+      selectedType: this.props.type,
       checked: false
     }
   }
 
   handleSelect(changeEvent) {
     this.setState({
-      selectedOption: changeEvent.target.value
+      selectedType: changeEvent.target.value
     })
   }
 
@@ -42,7 +41,7 @@ export default class Charts extends React.Component {
                 [1, 'rgb(240, 240, 255)']
             ]
         },
-        "type": this.state.selectedOption,
+        "type": this.state.selectedType,
         zoomType: 'xy'
       },
       "title": {
@@ -54,7 +53,7 @@ export default class Charts extends React.Component {
       yAxis: {
         min: 0,
         title: {
-          text: this.state.selectedOption ? this.state.selectedOption : this.props.title
+          text: this.state.selectedType ? this.state.selectedType : this.props.title
         },
         stackLabels: {
           enabled: true,
@@ -80,7 +79,7 @@ export default class Charts extends React.Component {
           "name": this.props.dataName,
           "data": this.props.data
         }, {
-          "name": this.state.dataName2,
+          "name": this.props.dataName2,
           "data": this.props.data2
         }
       ]
@@ -92,15 +91,9 @@ export default class Charts extends React.Component {
       <div className={styles.highchart}>
 
         <Dropdown
-          selectedOption={this.state.selectedOption}
+          selectedType={this.state.selectedType}
           handleSelect={this.handleSelect.bind(this)}
           name="Velg visning"
-        />
-
-        <Dropdown
-          selectedOption={this.state.selectedOption}
-          handleSelect={this.handleSelect.bind(this)}
-          name="Last ned"
         />
 
         <div id={this.props.title}></div>
@@ -109,7 +102,7 @@ export default class Charts extends React.Component {
           title={this.props.title}
           datagrunnlag={this.props.datagrunnlag}
           ref="datagrunnlagInput"
-          selectedDropdown={this.props.selectedDropdown}
+          selectedPanel={this.props.selectedPanel}
           handleSlide={this.props.handleSlide.bind(this)}
           handleClose={this.props.handleClose.bind(this)}
         />

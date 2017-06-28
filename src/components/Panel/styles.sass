@@ -1,7 +1,7 @@
 .panel
   line-height: 1.5em
   font-size: .9em
-  transition: .5s ease-out
+  transition: .7s ease-out
   width: 400px
   height: 100vh
   position: fixed
@@ -12,11 +12,15 @@
   background: #efefef
   z-index: 3
 
+  h2
+    padding-top: 2em
+    font-weight: normal
+    margin-bottom: 1em
+
 .panelVisible
   @extend .panel
   transform: translateX(0)
   overflow: auto
-  box-shadow: 0 0 1em #eee
 
 .panelHidden
   @extend .panel
