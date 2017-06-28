@@ -1,29 +1,7 @@
 @import '../colors'
 
-.enter
-  opacity: 0.01
-  transition: opacity 1.5s ease-in
-
-.enter.enterActive
-  opacity: 1
-
-.leave
-  opacity: 1
-  transition: opacity 1.5s ease-in
-
-.leave.leaveActive
-  opacity: .01
-
-.appear
-  opacity: .25
-
-.appear.appearActive
-  opacity: 1
-  transition: opacity 1.5s ease-in
-
-
 body
-  background: $primary
+  // background: $primary
   margin: 0
 
   *
@@ -36,6 +14,5 @@ body
 .element
   padding: 3em
   position: relative
-  background: lighten($primary,5%)
   font-family: sans-serif
   margin: 0 auto

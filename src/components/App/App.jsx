@@ -38,8 +38,22 @@ export default class App extends React.Component {
       titles: [],
       subject: 'atom',
       clicked: false,
-      selectedOption: 'bar'
+      selectedOption: 'bar',
+      selectedDropdown: ''
     };
+  }
+
+  handleSlide(e) {
+    console.log('handleslide from app', e.target.value)
+    this.setState({
+      selectedDropdown: e.target.value,
+    })
+  }
+
+  handleClose(e) {
+    this.setState({
+      selectedDropdown: ''
+    })
   }
 
   handleClick() {
@@ -66,9 +80,14 @@ export default class App extends React.Component {
   render() {
     return (
       <div className={styles.element}>
+
+        Selected dropdown: {this.state.selectedDropdown} <br />
+
+        <br />
+
         <Chart
           selectedOption={this.state.selectedOption}
-          title="Hovednavn på graf"
+          title="Statistikk"
           stacking="true"
           dataName="Comments"
           type="bar" // pie, bar, column, line
@@ -76,6 +95,10 @@ export default class App extends React.Component {
           data2={this.state.scores}
           xAxis={this.state.titles}
           yAxis={this.state.titles}
+          handleSlide={this.handleSlide.bind(this)}
+          handleClose={this.handleClose.bind(this)}
+          selectedDropdown={this.state.selectedDropdown}
+          datagrunnlag={this.state.titles[0]}
         />
 
         <br />
@@ -87,25 +110,25 @@ export default class App extends React.Component {
           data={this.state.comments}
           data2={this.state.scores}
           xAxis={this.state.titles}
+          handleSlide={this.handleSlide.bind(this)}
+          handleClose={this.handleClose.bind(this)}
+          selectedDropdown={this.state.selectedDropdown}
+          datagrunnlag={this.state.titles[1]}
         />
+
+        {/* <div style={{'width': '50%', 'display': 'inline-block'}}>
+          <Chart
+            title="Reddit data 1"
+            type="column" // pie, bar, column, line
+            dataName="Comments"
+            data={this.state.comments}
+            data2={this.state.scores}
+            xAxis={this.state.titles}
+          />
+        </div> */}
+
 
         {/* <Chart
-          title="Reddit data 1"
-          type="column" // pie, bar, column, line
-          dataName="Comments"
-          data={this.state.comments}
-          data2={this.state.scores}
-          xAxis={this.state.titles}
-        />
-
-        <Chart
-          title="Browser market shares January, 2015 to May, 2015"
-          type="pie" // pie, bar, column, line
-          data={piedata}
-          dataName="Brands"
-        />
-
-        <Chart
           title="Reddit data 2"
           type="bar" // pie, bar, column, line
           data={this.state.comments}
@@ -120,8 +143,10 @@ export default class App extends React.Component {
           data2={this.state.scores}
           xAxis={this.state.titles}
         />
+ */}
 
-        <Map
+ <br/>
+        {/* <Map
           title="Norway"
           data={mapdata}
         /> */}

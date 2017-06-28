@@ -3,7 +3,7 @@ import styles from './styles.sass'
 import icon from './icon.svg'
 import Options from '../Options/Options.jsx'
 
-export default class Download extends React.Component {
+export default class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

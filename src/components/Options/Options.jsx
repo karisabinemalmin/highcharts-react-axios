@@ -31,6 +31,16 @@ export default class Options extends React.Component {
                 type="radio"
                 name="velg_visning"
                 checked={'bar' === this.state.selectedOption}
+                value="pie" />
+                pie
+        </label>
+
+        <label><input
+                onChange={this.handleSelect.bind(this)}
+                ref="inputfield"
+                type="radio"
+                name="velg_visning"
+                checked={'bar' === this.state.selectedOption}
                 value="bar" />
                 bar
         </label>
