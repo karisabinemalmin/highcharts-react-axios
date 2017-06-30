@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles.sass'
 
 export default class Panel extends React.Component {
   constructor(props) {
@@ -17,6 +16,8 @@ export default class Panel extends React.Component {
   }
 
   render() {
+    console.log(this.props.selectedpanel ? 'true' : 'false');
+
     let selected = this.props.selectedPanel === this.props.title
 
     let checkbox = null;
@@ -40,9 +41,11 @@ export default class Panel extends React.Component {
 
     return (
       <div>
-        <label> {checkbox} Datagrunnlag </label>
+        {this.props.selectedpanel ? 'true' : 'false'}
 
-        <div className={selected ? styles.panelVisible : styles.panelHidden}>
+        <label className={selected ? 'panel--active' : 'panel--inactive'}> {checkbox} Datagrunnlag </label>
+
+        <div className={selected ? 'panel panel--visible' : 'panel panel--hidden'}>
           <h2>Datagrunnlag for «{this.props.title}»</h2>
           {this.props.datagrunnlag}
         </div>

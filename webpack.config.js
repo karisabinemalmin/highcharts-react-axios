@@ -17,7 +17,7 @@ module.exports = {
   module: {
     loaders: [{
 
-      test: /\.sass$/,
+      test: /\.(sass|scss)$/,
       use: ExtractTextPlugin.extract({
 
         use: [
@@ -25,7 +25,7 @@ module.exports = {
             loader: "css-loader",
             options: {
               sourceMap: true,
-              modules: true,
+              modules: false,
               localIdentName: '[name]__[local]--[hash:base64:5]'
             }
           },
@@ -39,7 +39,7 @@ module.exports = {
       })
 
     }, {
-      test: /\.(png|svg)/,
+      test: /\.(png|svg|gif|eot|ttf|woff)/,
       loader: 'file-loader',
     },
     {

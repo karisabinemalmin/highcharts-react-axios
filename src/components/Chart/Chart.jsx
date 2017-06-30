@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles.sass'
 import Highcharts from 'highcharts'
 import Exporting from 'highcharts/modules/exporting.src'
 Exporting(Highcharts)
@@ -7,12 +6,19 @@ Exporting(Highcharts)
 import Dropdown from '../Dropdown/Dropdown.jsx'; // Component
 import Panel from '../Panel/Panel.jsx'; // Component
 
+import 'react-widgets/lib/scss/react-widgets.scss';
+import DropdownList from 'react-widgets/lib/DropdownList';
+
+const colors = [
+  'line', 'pie', 'bar'
+];
+
+
 export default class Charts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedType: this.props.type,
-      checked: false
     }
   }
 
@@ -22,11 +28,18 @@ export default class Charts extends React.Component {
     })
   }
 
+  dropdownchange(changeEvent) {
+    console.log('dropdownchange', changeEvent);
+    this.state = {
+      selectedType: changeEvent,
+    }
+  }
+
   componentDidUpdate() {
     new Highcharts.chart(this.props.title, {
       "colors": [
         '#f6c034',
-        '#db4a00',
+        '#7e9b40',
         '#809ba0',
         '#117eb4',
         '#79006c',
@@ -34,13 +47,6 @@ export default class Charts extends React.Component {
         '#574319',
       ],
       "chart": {
-        backgroundColor: {
-            linearGradient: [0, 0, 500, 500],
-            stops: [
-                [0, 'rgb(255, 255, 255)'],
-                [1, 'rgb(240, 240, 255)']
-            ]
-        },
         "type": this.state.selectedType,
         zoomType: 'xy'
       },
@@ -88,13 +94,20 @@ export default class Charts extends React.Component {
 
   render() {
     return (
-      <div className={styles.highchart}>
+      <div className="highchart">
 
-        <Dropdown
+        {/* <Dropdown
           selectedType={this.state.selectedType}
           handleSelect={this.handleSelect.bind(this)}
           name="Velg visning"
-        />
+        /> */}
+
+        <DropdownList
+          onChange={this.dropdownchange.bind(this)}
+          defaultValue={'orange'}
+          data={colors} />
+
+          {this.state.selectedType}
 
         <div id={this.props.title}></div>
 
