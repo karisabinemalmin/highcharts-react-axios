@@ -6,24 +6,29 @@ $rw-img-path:  '~react-widgets/lib/img';
 body {
   margin: 0;
   font-family: sans-serif;
-  text-align: center;
   padding: 0;
+  background: #efefef;
+}
 
-  * {
-    box-sizing: border-box;
-    transition: .5s;
-  }
+* {
+  box-sizing: border-box;
+  transition: .5s;
+}
 
-  p {
-    line-height: 1.5em;
-  }
+p {
+  line-height: 1.5em;
+}
+
+h1 {
+  font-weight: normal;
 }
 
 .wrap {
   text-align: left;
-  width: 100%;
+  max-width: 600px;
   margin: 0 auto;
   position: relative;
+  padding: 0 1em;
 }
 
 .highchart {
@@ -46,4 +51,15 @@ body {
   .rw-i {
     line-height: 2em;
   }
+}
+
+.App {
+  background: #fff;
+}
+
+.site-header {
+  background: #efefef;
+  height: 100px;
+  width: 100%;
+  display: block;
 }
