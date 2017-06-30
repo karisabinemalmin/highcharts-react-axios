@@ -1,0 +1,49 @@
+$rw-font-path: '~react-widgets/lib/fonts';
+$rw-img-path:  '~react-widgets/lib/img';
+
+@import 'panel.scss';
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  text-align: center;
+  padding: 0;
+
+  * {
+    box-sizing: border-box;
+    transition: .5s;
+  }
+
+  p {
+    line-height: 1.5em;
+  }
+}
+
+.wrap {
+  text-align: left;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.highchart {
+  padding: 2em;
+  margin: 1em;
+  border: 1px solid #efefef;
+}
+
+.rw-widget {
+  display: inline-block;
+  border-radius: 0;
+
+  .rw-popup {
+    box-shadow: none;
+  }
+
+  .rw-popup-container {
+    width: 200px;
+  }
+  .rw-i {
+    line-height: 2em;
+  }
+}
