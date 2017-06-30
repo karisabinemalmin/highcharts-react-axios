@@ -11,7 +11,7 @@ export default class App extends React.Component {
       scores: [],
       titles: [],
       subject: 'atom',
-      selectedPanel: ''
+      selectedPanel: null
     };
   }
 

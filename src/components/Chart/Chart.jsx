@@ -3,7 +3,6 @@ import Highcharts from 'highcharts'
 import Exporting from 'highcharts/modules/exporting.src'
 Exporting(Highcharts)
 
-import Dropdown from '../Dropdown/Dropdown.jsx'; // Component
 import Panel from '../Panel/Panel.jsx'; // Component
 
 import 'react-widgets/lib/scss/react-widgets.scss';
@@ -29,10 +28,9 @@ export default class Charts extends React.Component {
   }
 
   dropdownchange(changeEvent) {
-    console.log('dropdownchange', changeEvent);
-    this.state = {
+    this.setState({
       selectedType: changeEvent,
-    }
+    })
   }
 
   componentDidUpdate() {
@@ -96,18 +94,10 @@ export default class Charts extends React.Component {
     return (
       <div className="highchart">
 
-        {/* <Dropdown
-          selectedType={this.state.selectedType}
-          handleSelect={this.handleSelect.bind(this)}
-          name="Velg visning"
-        /> */}
-
         <DropdownList
           onChange={this.dropdownchange.bind(this)}
-          defaultValue={'orange'}
+          defaultValue={this.state.selectedType}
           data={colors} />
-
-          {this.state.selectedType}
 
         <div id={this.props.title}></div>
 
