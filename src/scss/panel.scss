@@ -1,4 +1,3 @@
-
 .panel {
   line-height: 1.5em;
   font-size: .9em;
@@ -7,7 +6,7 @@
   height: 100vh;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   padding: 2em;
   box-sizing: border-box;
   z-index: 3;
@@ -27,8 +26,13 @@
 }
 
 .panel--hidden {
-  transform: translateX(-400px);
+  transform: translateX(400px);
 }
+
+
+
+
+// Label
 
 .panel--inactive {
   border: 1px solid #efefef;
@@ -36,13 +40,14 @@
   margin: 1em 0 0;
   display: inline-block;
 }
+
 .panel--active {
   height: 100%;
   width: 100%;
   display: block;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   background: transparentize(black, .5);
   z-index: 3;
   text-indent: -200px;

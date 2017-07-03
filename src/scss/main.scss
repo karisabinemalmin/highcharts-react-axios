@@ -3,6 +3,10 @@ $rw-img-path:  '~react-widgets/lib/img';
 
 @import 'panel.scss';
 
+.fixed {
+  position: fixed;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;

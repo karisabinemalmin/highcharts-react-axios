@@ -3,7 +3,7 @@ import Highcharts from 'highcharts'
 import Exporting from 'highcharts/modules/exporting.src'
 Exporting(Highcharts)
 
-import Panel from '../Panel/Panel.jsx'; // Component
+import Panel from '../Panel/Panel.jsx';
 
 import 'react-widgets/lib/scss/react-widgets.scss';
 import DropdownList from 'react-widgets/lib/DropdownList';
@@ -11,7 +11,6 @@ import DropdownList from 'react-widgets/lib/DropdownList';
 const colors = [
   'line', 'pie', 'bar'
 ];
-
 
 export default class Charts extends React.Component {
   constructor(props) {
@@ -27,7 +26,7 @@ export default class Charts extends React.Component {
     })
   }
 
-  dropdownchange(changeEvent) {
+  dropdownChange(changeEvent) {
     this.setState({
       selectedType: changeEvent,
     })
@@ -78,15 +77,13 @@ export default class Charts extends React.Component {
           }
         }
       },
-      "series": [
-        {
+      "series": [{
           "name": this.props.dataName,
           "data": this.props.data
         }, {
           "name": this.props.dataName2,
           "data": this.props.data2
-        }
-      ]
+      }]
     })
   }
 
@@ -95,7 +92,7 @@ export default class Charts extends React.Component {
       <div className="highchart">
 
         <DropdownList
-          onChange={this.dropdownchange.bind(this)}
+          onChange={this.dropdownChange.bind(this)}
           defaultValue={this.state.selectedType}
           data={colors} />
 
@@ -104,10 +101,8 @@ export default class Charts extends React.Component {
         <Panel
           title={this.props.title}
           datagrunnlag={this.props.datagrunnlag}
-          ref="datagrunnlagInput"
           selectedPanel={this.props.selectedPanel}
           handleSlide={this.props.handleSlide.bind(this)}
-          handleClose={this.props.handleClose.bind(this)}
         />
 
       </div>
